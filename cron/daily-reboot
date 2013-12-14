@@ -1,0 +1,20 @@
+# Reboot the rover every day at 4
+
+tell() {
+wall << EOF
+The rover will reboot in $1 hour(s) at 4, please save all work.
+EOF
+}
+
+tellm() {
+wall << EOF
+The rover will reboot in $1 minute(s) at 4, please save all work.
+EOF
+}
+
+* 1 * * * tell() 3
+* 2 * * * tell() 2
+* 3 * * * tell() 1
+30 3 * * * tellm() 30
+50 3 * * * tellm() 10
+* 4 * * * sudo reboot
