@@ -1,0 +1,15 @@
+# dir
+build/*
+devel/*
+!.placeholder
+
+# tmp files
+*.bak
+*.log
+*.old
+*.swp
+*.pyc
+*~
+
+# osx fix
+.DS_Store
