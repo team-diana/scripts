@@ -31,9 +31,12 @@ exitOnNo
 echo "Moving to home directory..."
 cd ~
 
-echo "Setting up git"
-wget https://raw.github.com/team-diana/dotfiles/master/git/gitconfig.symlink -O ~/.gitconfig
-okMsg "Done"
+# This needs to happen otherwise we might have non symlinks for .gitconfig
+echo "Downloading the dotfiles repo repo..."
+git clone https://github.com/team-diana/dotfiles.git || errorMsg "Unable to retrieve scriptsles.git from git"
+echo "Starting dotfiles bootstrap..."
+bash ~/.dotfiles/script/bootstrap
+okMsg "dotfiles copied"
 
 echo "Downloading the script repo..."
 git clone https://github.com/team-diana/scripts.git  || errorMsg "Unable to retrieve scripts from git"
@@ -66,12 +69,5 @@ fi
 echo "Copying init files... (Requires root permission)"
 sudo bash ~/scripts/update-links.sh ||  errorMsg "Unable to install init files"
 okMsg "Init files copied"
-
-cd ~
-echo "Downloading the dotfiles repo repo..."
-git clone https://github.com/team-diana/dotfiles.git || errorMsg "Unable to retrieve scriptsles.git from git"
-echo "Starting dotfiles bootstrap..."
-bash ~/.dotfiles/script/bootstrap
-okMsg "dotfiles copied"
 
 okMsg "SETUP COMPLETED"
