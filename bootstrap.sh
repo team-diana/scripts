@@ -35,7 +35,11 @@ cd ~
 echo "Downloading the dotfiles repo repo..."
 git clone https://github.com/team-diana/dotfiles.git .dotfiles || errorMsg "Unable to retrieve scriptsles.git from git"
 echo "Starting dotfiles bootstrap..."
-bash ~/.dotfiles/script/bootstrap
+cd ~/.dotfiles
+bash ./script/bootstrap
+cd ~
+mkdir ~/.vim/.undo
+mkdir ~/.vim-tmp
 okMsg "dotfiles copied"
 
 echo "Downloading the script repo..."
@@ -51,12 +55,12 @@ cd ..
 okMsg "Download done"
 
 echo "Install needed packages... (Requires root permission) [Y/n]"
-ans
+ans=""
 read ans
 
 if [[ $ans != "n" ]]; then
   #TODO: add all the needed libs
-  packages = "tree vim ranger zsh unzip"
+  packages="tree vim cron ranger zsh unzip"
   sudo apt-get install $packages || errorMsg "Unable to install packages"
   sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu precise main" > /etc/apt/sources.list.d/ros-latest.list'
   wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
@@ -77,6 +81,7 @@ if [[ $ans != "n" ]]; then
   wget $roverPackagesAddr -O rover-packages.zip || errorMsg "Unable to download rover-packages"
   unzip -x rover-packages.zip
   cd rover-packages
+  cp ~/scripts/install-rover-packages.sh .
   bash ./install-rover-packages.sh
   okMsg "Packages installed"
 fi
