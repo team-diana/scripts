@@ -33,7 +33,7 @@ cd ~
 
 # This needs to happen otherwise we might have non symlinks for .gitconfig
 echo "Downloading the dotfiles repo repo..."
-git clone https://github.com/team-diana/dotfiles.git || errorMsg "Unable to retrieve scriptsles.git from git"
+git clone https://github.com/team-diana/dotfiles.git .dotfiles || errorMsg "Unable to retrieve scriptsles.git from git"
 echo "Starting dotfiles bootstrap..."
 bash ~/.dotfiles/script/bootstrap
 okMsg "dotfiles copied"
