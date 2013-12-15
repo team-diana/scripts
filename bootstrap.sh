@@ -50,13 +50,13 @@ git submodule init && git submodule update || errorMsg "Unable to retrieve submo
 cd ..
 okMsg "Download done"
 
-echo "Install all the needed stuff... (Requires root permission) [Y/n]"
+echo "Install needed packages... (Requires root permission) [Y/n]"
 ans
 read ans
 
 if [[ $ans != "n" ]]; then
   #TODO: add all the needed libs
-  packages = "cmake"
+  packages = "tree vim ranger zsh unzip"
   sudo apt-get install $packages || errorMsg "Unable to install packages"
   sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu precise main" > /etc/apt/sources.list.d/ros-latest.list'
   wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
@@ -66,8 +66,23 @@ if [[ $ans != "n" ]]; then
   sudo apt-get install python-rosinstall
 fi
 
+echo "Install third party drivers... (Requires root permission) [Y/n]"
+read ans
+
+if [[ $ans != "n" ]]; then
+  #TODO: add all the needed libs
+  roverPackagesAddr=""
+  warningMsg "Insert the link from where the rover-packages directory can be downloaded (gdrive zip file)"
+  read roverPackagesAddr
+  wget $roverPackagesAddr -O rover-packages.zip || errorMsg "Unable to download rover-packages"
+  unzip -x rover-packages.zip
+  cd rover-packages
+  bash ./install-rover-packages.sh
+  okMsg "Packages installed"
+fi
+
 echo "Copying init files... (Requires root permission)"
-sudo bash ~/scripts/update-links.sh ||  errorMsg "Unable to install init files"
+sudo bash ~/scripts/update-links.sh || errorMsg "Unable to install init files"
 okMsg "Init files copied"
 
 okMsg "SETUP COMPLETED"
