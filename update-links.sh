@@ -8,7 +8,7 @@ for y in "init" "cron.d"; do
         if [[ "$file" != "README.md" ]]; then
             TO="$DEST/$y"/team-diana-"$file"
             sudo cp "$BASE/$y/$file" "$TO" 2>&1 > /dev/null
-            sudo chown root:root "$TO 2>&1 > /dev/null
+            sudo chown root:root "$TO" 2>&1 > /dev/null
             sudo chmod +x "$TO" 2>&1 > /dev/null
             crontab "$TO"
         fi
