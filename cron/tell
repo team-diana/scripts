@@ -1,0 +1,4 @@
+#!/bin/bash
+wall << EOF
+The rover will reboot in $1 hour(s) at 4:00, please save all work.
+EOF
