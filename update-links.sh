@@ -10,7 +10,7 @@ for y in "init" "cron.d"; do
             sudo cp "$BASE/$y/$file" "$TO" 2>&1 > /dev/null
             sudo chown root:root "$TO" 2>&1 > /dev/null
             sudo chmod +x "$TO" 2>&1 > /dev/null
-            if [[ "$y" == "cron.d" ]]; do
+            if [[ "$y" == "cron.d" ]]; then
                 crontab "$TO"
             fi
         fi
