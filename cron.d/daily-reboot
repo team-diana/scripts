@@ -1,6 +1,6 @@
 # Reboot the rover every day at 4
 
-X=/home/rover/scripts/cron
+X=/home/diana/scripts/cron
 
 * 1 * * * $X/tell 3 >/dev/null 2>&1
 * 2 * * * $X/tell 2 >/dev/null 2>&1
