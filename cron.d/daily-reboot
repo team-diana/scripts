@@ -2,9 +2,9 @@
 
 X=/home/diana/scripts/cron
 
-* 1 * * * $X/tell 3 >/dev/null 2>&1
-* 2 * * * $X/tell 2 >/dev/null 2>&1
-* 3 * * * $X/tell 1 >/dev/null 2>&1
+0 1 * * * $X/tell 3 >/dev/null 2>&1
+0 2 * * * $X/tell 2 >/dev/null 2>&1
+0 3 * * * $X/tell 1 >/dev/null 2>&1
 30 3 * * * $X/tellm 10 >/dev/null 2>&1
 50 3 * * * $X/tellm 10 >/dev/null 2>&1
-* 4 * * * reboot >/dev/null 2>&1
+0 4 * * * reboot >/dev/null 2>&1
