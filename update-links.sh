@@ -4,8 +4,8 @@ BASE=`pwd`
 DEST="/etc"
 
 # make scripts belong to root, to force usage of root
-sudo chown root:root -r cron/
-sudo chmod +x -r cron/
+sudo chown -R root:root cron/
+sudo chmod -R +x cron/
 
 for y in "init" "cron.d"; do
 	for file in $( cd "$BASE/$y" && ls ); do
