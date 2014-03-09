@@ -3,6 +3,10 @@
 BASE=`pwd`
 DEST="/etc"
 
+# make scripts belong to root, to force usage of root
+sudo chown root:root -r cron/
+sudo chmod +x -r cron/
+
 for y in "init" "cron.d"; do
 	for file in $( cd "$BASE/$y" && ls ); do
         if [[ "$file" != "README.md" ]]; then
