@@ -7,6 +7,9 @@ DEST="/etc"
 sudo chown -R root:root cron/
 sudo chmod -R +x cron/
 
+# exclude README
+sudo chmod 644 cron/README.md
+
 for y in "init" "cron.d"; do
 	for file in $( cd "$BASE/$y" && ls ); do
         if [[ "$file" != "README.md" ]]; then
@@ -15,7 +18,7 @@ for y in "init" "cron.d"; do
             sudo chown root:root "$TO" 2>&1 > /dev/null
             sudo chmod +x "$TO" 2>&1 > /dev/null
             if [[ "$y" == "cron.d" ]]; then
-                crontab "$TO"
+                sudo crontab "$TO"
             fi
         fi
 	done
