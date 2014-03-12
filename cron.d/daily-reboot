@@ -1,5 +1,7 @@
 # Reboot the rover every day at 4
 
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 X=/home/diana/scripts/cron
 
 0 1 * * * root $X/tell 3 >> /var/log/cron.log 2>&1
