@@ -8,13 +8,6 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-# make scripts belong to root, to force usage of root
-chown -R root:root cron/
-chmod -R +x cron/
-
-# exclude README
-chmod 644 cron/README.md
-
 for y in "init" "cron.d"; do
 	for file in $( cd "$BASE/$y" && ls ); do
         if [[ "$file" != "README.md" ]]; then
@@ -23,7 +16,7 @@ for y in "init" "cron.d"; do
             chown root:root "$TO" 2>&1 > /dev/null
             chmod +x "$TO" 2>&1 > /dev/null
             if [[ "$y" == "cron.d" ]]; then
-                crontab "$TO"
+                crontab -u root "$TO"
             fi
         fi
 	done
