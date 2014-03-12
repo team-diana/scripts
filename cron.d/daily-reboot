@@ -2,9 +2,9 @@
 
 X=/home/diana/scripts/cron
 
-0 1 * * * $X/tell 3 >> /var/log/cron.log 2>&1
-0 2 * * * $X/tell 2 >> /var/log/cron.log 2>&1
-0 3 * * * $X/tell 1 >> /var/log/cron.log 2>&1
-30 3 * * * $X/tellm 30 >> /var/log/cron.log 2>&1
-50 3 * * * $X/tellm 10 >> /var/log/cron.log 2>&1
-0 4 * * * /sbin/reboot >> /var/log/cron.log 2>&1
+0 1 * * * root $X/tell 3 >> /var/log/cron.log 2>&1
+0 2 * * * root $X/tell 2 >> /var/log/cron.log 2>&1
+0 3 * * * root $X/tell 1 >> /var/log/cron.log 2>&1
+30 3 * * * root $X/tellm 30 >> /var/log/cron.log 2>&1
+50 3 * * * root $X/tellm 10 >> /var/log/cron.log 2>&1
+0 4 * * * root /sbin/reboot >> /var/log/cron.log 2>&1
