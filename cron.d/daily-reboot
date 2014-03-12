@@ -7,4 +7,4 @@ X=/home/diana/scripts/cron
 0 3 * * * $X/tell 1 >> /var/log/cron.log 2>&1
 30 3 * * * $X/tellm 30 >> /var/log/cron.log 2>&1
 50 3 * * * $X/tellm 10 >> /var/log/cron.log 2>&1
-0 4 * * * reboot >> /var/log/cron.log 2>&1
+0 4 * * * /sbin/reboot >> /var/log/cron.log 2>&1
