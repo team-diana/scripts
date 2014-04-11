@@ -1,6 +1,9 @@
 #!/bin/bash
 
-source $SCRIPTS_DIR/utils/colors.sh
+source $DIANA_SCRIPTS_DIR/utils/colors.sh
+
+export CATKIN_WS=/home/diana/catkin_ws/
+export CAMERAS_LAUNCH_DIR=$CATKIN_WS/catkin_ws/src/vision/src/pgr_camera/launch/
 
 printBrLine() {
   printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
@@ -44,6 +47,10 @@ esac
 done
 }
 
+# $1 tab name
+# ${@:2} process and arguments 
 function startProcessInTerminal {
-  /usr/bin/gnome-terminal -e "bash -c 'source $CATKIN_WS/devel/setup.bash ; $@'"
+ tabName=$1
+ shift
+ konsole --new-tab -p LocalTabTitleFormat="$tabName" -e 'execute' $@
 }

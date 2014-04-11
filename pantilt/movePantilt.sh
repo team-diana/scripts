@@ -7,8 +7,8 @@ fi
 
 pan_max=1
 pan_min=-1
-tilt_max=0.5
-tilt_min=-0.5
+tilt_max=1.5
+tilt_min=-1.5
 
 pan_target=$1
 tilt_target=$2
